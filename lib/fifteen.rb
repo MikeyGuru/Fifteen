@@ -35,8 +35,10 @@ class Fifteen
     if number == 1 || number == 2
       if random.include? number
         puts "You go first"
+        play_player_1
       else
         puts "The computer goes first"
+        play_cpu
       end
     else
       puts "Please pick a number 1 or 2"
@@ -48,8 +50,10 @@ class Fifteen
     help = gets.chomp.downcase
     if help == "yes"
       puts "Rules and Info"
+      random_start
     elsif help == "no"
       puts "\nLet's PLAY Fifteen\n"
+      random_start
     else
       puts 'INVALID RESPONSE PLEASE ENTER "YES" OR "NO"' + "\n" + "\n"
       start
@@ -73,13 +77,29 @@ class Fifteen
       user_pick
     end
   end
-  def score
+  def score_cpu
+    if
+      @cpu_cards.inject(:+) == 15
+      puts "Computer Wins"
+    elsif
+      @player_1.inject(:+) == 15
+      puts "You Win"
+    else
+      cpu_pick
+      score4_cpu
+      user_pick
+      score4_player
+    end
+  end
+  def score_player_1
     if
       @player_1.inject(:+) == 15
       puts "You Win"
+      play_again
     elsif
       @cpu_cards.inject(:+) == 15
       puts "Computer Wins"
+      play_again
     else
       user_pick
       score4_player
@@ -90,40 +110,60 @@ class Fifteen
   def score4_player
     if @player_1[0] + @player_1[1] + @player_1[3] == 15
       puts "You Win"
+      play_again
+      random
     elsif
       @player_1[0] + @player_1[2] + @player_1[3] == 15
       puts "You Win"
+      play_again
     elsif
       @player_1[1] + @player_1[2] + @player_1[3] == 15
       puts "You Win"
-    else
-      exit
+      play_again
     end
   end
   def score4_cpu
     if
       @cpu_cards[0] + @cpu_cards[1] + @cpu_cards[3]  == 15
       puts "Computer Wins"
+      play_again
     elsif
       @cpu_cards[0] + @cpu_cards[2] + @cpu_cards[3] == 15
       puts "Computer Wins"
+      play_again
     elsif
       @cpu_cards[1] + @cpu_cards[2] + @cpu_cards[3]  == 15
       puts "Computer Wins"
-    else
-    exit
+      play_again
     end
   end
-  def play
-    start
-    random
+  def play_player_1
     user_pick
     cpu_pick
     user_pick
     cpu_pick
     user_pick
     cpu_pick
-    score
+    score_player_1
+  end
+  def play_cpu
+    cpu_pick
+    user_pick
+    cpu_pick
+    user_pick
+    cpu_pick
+    user_pick
+    score_cpu
+  end
+  def play_again
+    puts "Would you like to Play Again??\nType YES or NO"
+    answer = gets.chomp.downcase
+    if answer == "yes"
+      restart = Fifteen.new
+      restart.start
+    else
+      exit
+    end
   end
 
 
@@ -142,4 +182,4 @@ end
 
 
 run = Fifteen.new
-run.play
+run.start
