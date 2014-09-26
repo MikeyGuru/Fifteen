@@ -23,6 +23,26 @@ class Fifteen
   def start
     welcome
   end
+  def random_start
+    random
+  end
+  def random
+    random = Array.new
+    random << rand(1..2)
+    puts random
+    puts "Pick a number 1 or 2"
+    number = gets.chomp.to_i
+    if number == 1 || number == 2
+      if random.include? number
+        puts "You go first"
+      else
+        puts "The computer goes first"
+      end
+    else
+      puts "Please pick a number 1 or 2"
+      random_start
+    end
+  end
   def welcome
     puts ".....Welcome to GURU's FIFTEEN....\nWould you like to know how to play?"
     help = gets.chomp.downcase
@@ -34,9 +54,6 @@ class Fifteen
       puts 'INVALID RESPONSE PLEASE ENTER "YES" OR "NO"' + "\n" + "\n"
       start
     end
-
-
-
   end
   def cpu_pick
     pick = @cards.sample
@@ -76,9 +93,11 @@ class Fifteen
     elsif
       @player_1[0] + @player_1[2] + @player_1[3] == 15
       puts "You Win"
-    else
+    elsif
       @player_1[1] + @player_1[2] + @player_1[3] == 15
       puts "You Win"
+    else
+      exit
     end
   end
   def score4_cpu
@@ -88,12 +107,16 @@ class Fifteen
     elsif
       @cpu_cards[0] + @cpu_cards[2] + @cpu_cards[3] == 15
       puts "Computer Wins"
-    else
+    elsif
       @cpu_cards[1] + @cpu_cards[2] + @cpu_cards[3]  == 15
       puts "Computer Wins"
+    else
+    exit
     end
   end
   def play
+    start
+    random
     user_pick
     cpu_pick
     user_pick
