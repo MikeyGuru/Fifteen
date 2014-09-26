@@ -112,15 +112,18 @@ class Fifteen
   end
   def score4_player
     p1 = @player_1.combination(3).to_a
-    if sum(p1[1]) == 15
+    p p1
+    if p1.any?{ |array| sum(array) == 15 }
+      # sum(p1[1]) == 15
       puts "You Win"
-      play_again
-    elsif sum(p1[2]) == 15
-      puts "You Win"
-      play_again
-    elsif sum(p1[3]) == 15
-      puts "You Win"
-      play_again
+    #
+    #   play_again
+    # elsif sum(p1[2]) == 15
+    #   puts "You Win"
+    #   play_again
+    # elsif sum(p1[3]) == 15
+    #   puts "You Win"
+    #   play_again
     end
   end
     def score4_cpu

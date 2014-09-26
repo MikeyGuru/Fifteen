@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+gem 'activesupport'
 
 # Add gems here like the following:
 # gem 'nokogiri'
