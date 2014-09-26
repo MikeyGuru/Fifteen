@@ -20,6 +20,9 @@ class Fifteen
     @player_1 = []
     @player_2 = []
   end
+  def sum(array)
+        array.inject{|sum,x| sum + x }
+  end
   def start
     welcome
   end
@@ -108,35 +111,46 @@ class Fifteen
     end
   end
   def score4_player
-    if @player_1[0] + @player_1[1] + @player_1[3] == 15
+    p1 = @player_1.combination(3).to_a
+    if sum(p1[1]) == 15
       puts "You Win"
       play_again
-      random
-    elsif
-      @player_1[0] + @player_1[2] + @player_1[3] == 15
+    elsif sum(p1[2]) == 15
       puts "You Win"
       play_again
-    elsif
-      @player_1[1] + @player_1[2] + @player_1[3] == 15
+    elsif sum(p1[3]) == 15
       puts "You Win"
       play_again
     end
   end
-  def score4_cpu
-    if
-      @cpu_cards[0] + @cpu_cards[1] + @cpu_cards[3]  == 15
-      puts "Computer Wins"
-      play_again
-    elsif
-      @cpu_cards[0] + @cpu_cards[2] + @cpu_cards[3] == 15
-      puts "Computer Wins"
-      play_again
-    elsif
-      @cpu_cards[1] + @cpu_cards[2] + @cpu_cards[3]  == 15
-      puts "Computer Wins"
-      play_again
+    def score4_cpu
+      c1 = @cpu_cards.combination(3).to_a
+      if sum(c1[1]) == 15
+        puts "Computer Wins"
+        play_again
+      elsif sum(c1[2]) == 15
+        puts "Computer Wins"
+        play_again
+      elsif sum(c1[3]) == 15
+        puts "Computer Wins"
+        play_again
+      end
     end
-  end
+  # def score5
+  #   if @player_1.rotate(-4)[0] + @player_1.rotate(-4)[1] + @player_1.rotate(-4)[3] == 15
+  #     puts "You Win"
+  #     play_again
+  #     random
+  #   elsif
+  #     @player_1.rotate(-3)[0] + @player_1.rotate(-3)[2] + @player_1.rotate(-3)[3] == 15
+  #     puts "You Win"
+  #     play_again
+  #   elsif
+  #     @player_1.rotate(-2)[1] + @player_1.rotate(-2)[2] + @player_1.rotate(-2)[3] == 15
+  #     puts "You Win"
+  #     play_again
+  #   end
+  # end
   def play_player_1
     user_pick
     cpu_pick
@@ -166,18 +180,6 @@ class Fifteen
     end
   end
 
-
-  # def score
-  #   count_thresh = 2
-  #   count = 0
-  #   loop do
-  #     user_pick
-  #     cpu_pick
-  #     count += 1
-  #     break if count > count_thresh || @player_1[0] + @player_1[1] + @player_1[2] ==15
-  #
-  #   end
-  # end
 end
 
 
