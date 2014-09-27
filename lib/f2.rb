@@ -32,7 +32,7 @@ class Fifteen
   def random
     random = Array.new
     random << rand(1..2)
-    puts "\n#{@player_name} i'm thinking of a number 1 or 2. \nIf you guess it you go first otherwise the computer goes first.\nPick a number 1 or 2"
+    puts "\n#{@player_name} Pick a number 1 or 2"
     number = gets.chomp.to_i
     if number == 1 || number == 2
       if random.include? number
@@ -104,36 +104,52 @@ If all the numbers are chosen, and nobody has a set of three that add up to 15, 
     end
   end
   def play_player_1
-    while !@cards.to_a.empty?
-      user_pick
-      score_player_1
-      cpu_pick
-      score_cpu
-    end
+    user_pick
+    cpu_pick
+    user_pick
+    cpu_pick
+    user_pick
+    score_player_1
+    cpu_pick
+    score_cpu
+    user_pick
+    score_player_1
+    cpu_pick
+    score_cpu
+    user_pick
+    score_player_1
     if @cards.to_a.empty?
       puts "Gameover\n It's a TIE"
       play_again
     end
   end
   def play_cpu
-    while !@cards.to_a.empty?
-      cpu_pick
-      score_cpu
-      user_pick
-      score_player_1
+    cpu_pick
+    user_pick
+    cpu_pick
+    user_pick
+    cpu_pick
+    score_cpu
+    user_pick
+    score_player_1
+    cpu_pick
+    score_cpu
+    user_pick
+    score_player_1
+    cpu_pick
+    score_cpu
+    if @cards.to_a.empty?
+      puts "Gameover\n It's a TIE"
+      play_again
     end
-      if @cards.to_a.empty?
-        puts "Gameover\n It's a TIE"
-        play_again
-      end
   end
   def play_again
     puts "#{@player_name} would you like to Play Again??\nType YES or NO"
     answer = gets.chomp.downcase
-    if answer == "yes" || answer == "y"
+    if answer == "yes"
       restart = Fifteen.new
       restart.start
-    elsif answer == "no" || answer == "n"
+    elsif answer == "no"
       puts "Thanks for playing #{@player_name}"
       exit
     else
@@ -141,7 +157,10 @@ If all the numbers are chosen, and nobody has a set of three that add up to 15, 
       play_again
     end
   end
+
 end
+
+
 run = Fifteen.new
 run.player_name=(first_player.name)
 run.start

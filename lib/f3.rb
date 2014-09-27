@@ -127,6 +127,7 @@ If all the numbers are chosen, and nobody has a set of three that add up to 15, 
         play_again
       end
   end
+
   def play_again
     puts "#{@player_name} would you like to Play Again??\nType YES or NO"
     answer = gets.chomp.downcase
@@ -141,7 +142,10 @@ If all the numbers are chosen, and nobody has a set of three that add up to 15, 
       play_again
     end
   end
+
 end
+
+
 run = Fifteen.new
 run.player_name=(first_player.name)
 run.start
