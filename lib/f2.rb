@@ -159,8 +159,6 @@ If all the numbers are chosen, and nobody has a set of three that add up to 15, 
   end
 
 end
-
-
 run = Fifteen.new
 run.player_name=(first_player.name)
 run.start
