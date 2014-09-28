@@ -6,7 +6,6 @@ class Player
     @name = gets.chomp.capitalize
   end
 end
-
 first_player = Player.new
 first_player.ask_name
 first_player.name
